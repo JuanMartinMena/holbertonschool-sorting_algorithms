@@ -38,6 +38,16 @@ int lomuto_partition(int *array, int low, int high, size_t size)
 	print_array(array, size);
 	return (i + 1);
 }
+void quicksort(int *array, int low, int high, size_t size)
+{
+	if (low < high)
+	{
+		int pi = lomuto_partition(array, low, high, size);
+
+		quicksort(array, low, pi - 1, size);
+		quicksort(array, pi + 1, high, size);
+	}
+}
 /**
  * quicksort - Sorts a sub-array using the Quick sort algorithm
  * @array: The array to sort
@@ -49,5 +59,5 @@ void quick_sort(int *array, size_t size)
 {
 	if (size < 2)
 		return;
-	quick_sort(array, 0, size - 1, size);
+	quicksort(array, 0, size - 1, size);
 }
